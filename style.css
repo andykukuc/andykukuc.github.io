@@ -109,3 +109,46 @@ footer {
     transform: scale(1);
   }
 }
+/* Improve vertical spacing around section dividers */
+hr {
+  border: 0;
+  border-top: 2px solid #232a36;
+  margin: 40px 0;
+}
+
+/* Slightly larger name for stronger visual anchor */
+h1 {
+  font-size: 2.4em;
+}
+
+/* Slightly brighter body text for readability */
+body {
+  color: #e6ecf3;
+}
+
+/* Subtle hover effect on section headers */
+h2:hover {
+  color: #a3d9f5;
+  transition: color 0.25s ease-in-out;
+}
+
+/* Fade-in animation for all sections */
+section {
+  animation: fadeInSection 0.8s ease-in-out;
+}
+
+@keyframes fadeInSection {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Add a little more breathing room under the header */
+header {
+  margin-bottom: 60px;
+}
