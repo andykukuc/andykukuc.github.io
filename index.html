@@ -25,7 +25,7 @@
     <a class="button" href="andykukuc_resume.pdf" target="_blank" title="Download Resume" aria-label="Download Resume PDF">
       &#x2B07; Download Resume (PDF)
     </a>
-    <button id="theme-toggle">Toggle Theme</button>
+    <button id="theme-toggle" title="Toggle theme">☀️</button>
   </header>
 
   <main>
@@ -123,9 +123,18 @@
 <script>
   const toggleButton = document.getElementById('theme-toggle');
   const body = document.body;
+  const isDarkMode = localStorage.getItem('darkMode') === 'true';
+
+  if (isDarkMode) {
+    body.classList.add('dark-mode');
+    toggleButton.textContent = '🌙';
+  }
 
   toggleButton.addEventListener('click', () => {
-    body.classList.toggle('light-mode');
+    body.classList.toggle('dark-mode');
+    const isDark = body.classList.contains('dark-mode');
+    localStorage.setItem('darkMode', isDark);
+    toggleButton.textContent = isDark ? '🌙' : '☀️';
   });
 </script>
 </html>
