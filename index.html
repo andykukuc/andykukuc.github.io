@@ -116,7 +116,20 @@
   <footer>
     <p>© Andy Kukuc &mdash; <a href="https://github.com/andykukuc" target="_blank">GitHub</a></p>
     <p style="color:#8ca0b3; font-size:0.95em; margin-top:8px;">Built with GitHub Pages · HTML/CSS</p>
+    <p id="last-updated"></p>
   </footer>
-
+  <script>
+    // Existing theme toggle code stays as-is
+  
+    // Last updated footer
+    const updatedElement = document.getElementById('last-updated');
+    const lastUpdated = new Date(document.lastModified);
+  
+    updatedElement.textContent = `Last updated: ${lastUpdated.toLocaleDateString(undefined, {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    })}`;
+  </script>
 </body>
 </html>
