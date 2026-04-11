@@ -1,0 +1,55 @@
+name: Build and Deploy WASM Portfolio
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'wasm-portfolio/**'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+
+      - name: Cache Cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            /tmp/portfolio-target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('wasm-portfolio/Cargo.lock') }}
+          restore-keys: ${{ runner.os }}-cargo-
+
+      - name: Install Trunk
+        uses: jetli/trunk-action@v0.5.0
+        with:
+          version: latest
+
+      - name: Build WASM
+        run: |
+          cd wasm-portfolio
+          CARGO_TARGET_DIR=/tmp/portfolio-target trunk build --release --public-url /wasm/
+
+      - name: Deploy to /wasm directory
+        run: |
+          rm -rf wasm/
+          cp -r wasm-portfolio/dist/ wasm/
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add wasm/
+          git diff --staged --quiet || git commit -m "chore: rebuild WASM portfolio [skip ci]"
+          git push

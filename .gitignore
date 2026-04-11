@@ -6,6 +6,7 @@
 # Rust / WASM
 wasm-portfolio/target/
 wasm-portfolio/dist/
+wasm/
 
 # macOS
 .DS_Store
