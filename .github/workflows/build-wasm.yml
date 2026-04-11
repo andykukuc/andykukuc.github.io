@@ -49,6 +49,10 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A
+          git add -f wasm-portfolio/dist/index.html
+          cp wasm-portfolio/dist/index.html index.html
+          git add index.html
+          find wasm-portfolio/dist -name "*.js" -o -name "*.wasm" -o -name "*.css" | xargs -I{} cp {} ./
+          git add -f *.js *.wasm *.css 2>/dev/null || true
           git diff --staged --quiet || git commit -m "chore: rebuild WASM portfolio [skip ci]"
           git push
