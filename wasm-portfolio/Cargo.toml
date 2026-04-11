@@ -1,0 +1,10 @@
+[package]
+name = "portfolio"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+yew = { version = "0.21", features = ["csr"] }
+
+[profile.release]
+opt-level = "s"
