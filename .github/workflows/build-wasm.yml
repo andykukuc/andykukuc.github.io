@@ -49,6 +49,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -f index.html *.js *.wasm snippets/ style.css 2>/dev/null || true
+          git add -A
           git diff --staged --quiet || git commit -m "chore: rebuild WASM portfolio [skip ci]"
           git push
