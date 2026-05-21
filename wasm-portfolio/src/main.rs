@@ -17,7 +17,7 @@ struct Project {
 
 const JOBS: &[Job] = &[
     Job {
-        title: "System Engineer",
+        title: "Senior System Engineer",
         company: "Motorola Solutions Inc.",
         date: "November 2023 – Present",
         bullets: &[
@@ -91,7 +91,7 @@ fn Header() -> Html {
             <img src="andykukuc-photo.jpg" alt="Andy Kukuc professional photo" class="profile-photo" />
             <h1>{"Andy Kukuc"}</h1>
             <p class="subtitle">
-                {"Network Security & Infrastructure Engineer · Critical Infrastructure · Juniper SRX"}
+                {"Senior System Engineer · Network Security & Critical Infrastructure · Motorola Solutions"}
             </p>
             <address class="contact">
                 {"Palos Hills, IL · "}
